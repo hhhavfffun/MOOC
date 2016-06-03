@@ -1,0 +1,43 @@
+package term2.week2;
+
+class Clock {
+
+	public int hour;
+	public int minute;
+	public int second;
+	Display h = new Display(24);
+	Display m = new Display(60);
+	Display s = new Display(60);
+
+	public Clock(int hour, int minute, int second) {
+		super();
+		this.hour = hour;
+		this.minute = minute;
+		this.second = second;
+	}
+
+	void tick() {
+		h.setValue(hour);
+		m.setValue(minute);
+		s.setValue(second);
+
+		s.increase();
+		if (s.getValue() == 0) {
+			m.increase();
+		
+			if (m.getValue() == 0) {
+				h.increase();
+			}
+		}
+
+		hour = h.getValue();
+		minute = m.getValue();
+		second = s.getValue();
+	}
+
+	public String toString() {
+		
+		return String.format("%02d:%02d:%02d", h.getValue(), m.getValue(), s.getValue());	
+	}
+
+}
